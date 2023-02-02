@@ -14,3 +14,6 @@
 
 # Project recources:
 https://drive.google.com/drive/folders/1Z2BC-GLZzMZP6xT_zL72oQAIaq1DHulo
+
+# Figma
+https://www.figma.com/file/tOJAAngT99Bvp6vyLLjJjO/__testUI%5C__?node-id=0%3A1
