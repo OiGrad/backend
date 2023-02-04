@@ -142,6 +142,9 @@ SIMPLE_JWT = {
 }
 
 SWAGGER_SETTINGS = {
+    'basic': {
+        'type': 'basic'
+    },
     'SECURITY_DEFINITIONS': {
         "JWT": {
             "type": "apiKey",

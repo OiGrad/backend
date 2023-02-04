@@ -1,8 +1,9 @@
 from django.utils.decorators import method_decorator
 from drf_yasg.utils import swagger_auto_schema
-from rest_framework.generics import GenericAPIView
+from rest_framework.generics import GenericAPIView, RetrieveUpdateDestroyAPIView, ListCreateAPIView
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
+from rest_framework.schemas import AutoSchema
 from rest_framework.views import APIView
 from rest_framework.viewsets import GenericViewSet
 
@@ -10,10 +11,10 @@ from posts.serializers import PostSerializer, LoveSerializer, CommentSerializer,
 from posts.models import Post, Love, Comment, Attachment
 
 
-class PostAPIView(GenericAPIView):
+class PostAPIView(RetrieveUpdateDestroyAPIView):
+    authentication_classes = []
     serializer_class = PostSerializer
     queryset = Post.objects.all()
-
 
     def get(self, request, id, format=None):
         try:
@@ -43,7 +44,12 @@ class PostAPIView(GenericAPIView):
         return Response(status=204)
 
 
-class PostAPIListView(APIView):
+class PostAPIListView(ListCreateAPIView):
+    serializer_class = PostSerializer
+    queryset = Post.objects.all()
+    authentication_classes = []
+
+
 
     def get(self, request, format=None):
         items = Post.objects.order_by('pk')
@@ -60,7 +66,9 @@ class PostAPIListView(APIView):
         return Response(serializer.errors, status=400)
 
 
-class LoveAPIView(APIView):
+class LoveAPIView(RetrieveUpdateDestroyAPIView):
+    serializer_class = LoveSerializer
+    queryset = Love.objects.all()
 
     def get(self, request, id, format=None):
         try:
@@ -90,10 +98,12 @@ class LoveAPIView(APIView):
         return Response(status=204)
 
 
-class LoveAPIListView(APIView):
+class LoveAPIListView(ListCreateAPIView):
+    serializer_class = LoveSerializer
+    queryset = Love.objects.all()
 
     def get(self, request, format=None):
-        items = Love.objects.order_by('pk')
+        items = Love.objects.all()
         paginator = PageNumberPagination()
         result_page = paginator.paginate_queryset(items, request)
         serializer = LoveSerializer(result_page, many=True)

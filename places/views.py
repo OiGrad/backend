@@ -1,13 +1,14 @@
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from places.serializers import CitySerializer, PlaceCategorySerializer, PlaceSerializer, PlaceGallerySerializer, PlaceReviewSerializer
+from places.serializers import CitySerializer, PlaceCategorySerializer, PlaceSerializer, PlaceGallerySerializer, \
+    PlaceReviewSerializer
 from places.models import City, PlaceCategory, Place, PlaceGallery, PlaceReview
+from rest_framework import generics
 
 
-
-
-class CityAPIView(APIView):
+class CityAPIView(generics.GenericAPIView):
+    serializer_class = CitySerializer
 
     def get(self, request, id, format=None):
         try:
@@ -37,7 +38,8 @@ class CityAPIView(APIView):
         return Response(status=204)
 
 
-class CityAPIListView(APIView):
+class CityAPIListView(generics.GenericAPIView):
+    serializer_class = CitySerializer
 
     def get(self, request, format=None):
         items = City.objects.order_by('pk')
@@ -54,7 +56,8 @@ class CityAPIListView(APIView):
         return Response(serializer.errors, status=400)
 
 
-class PlaceCategoryAPIView(APIView):
+class PlaceCategoryAPIView(generics.GenericAPIView):
+    serializer_class = PlaceCategorySerializer
 
     def get(self, request, id, format=None):
         try:
@@ -84,7 +87,8 @@ class PlaceCategoryAPIView(APIView):
         return Response(status=204)
 
 
-class PlaceCategoryAPIListView(APIView):
+class PlaceCategoryAPIListView(generics.GenericAPIView):
+    serializer_class = PlaceCategorySerializer
 
     def get(self, request, format=None):
         items = PlaceCategory.objects.order_by('pk')
@@ -101,7 +105,8 @@ class PlaceCategoryAPIListView(APIView):
         return Response(serializer.errors, status=400)
 
 
-class PlaceAPIView(APIView):
+class PlaceAPIView(generics.GenericAPIView):
+    serializer_class = PlaceSerializer
 
     def get(self, request, id, format=None):
         try:
@@ -131,7 +136,8 @@ class PlaceAPIView(APIView):
         return Response(status=204)
 
 
-class PlaceAPIListView(APIView):
+class PlaceAPIListView(generics.GenericAPIView):
+    serializer_class = PlaceSerializer
 
     def get(self, request, format=None):
         items = Place.objects.order_by('pk')
@@ -148,7 +154,8 @@ class PlaceAPIListView(APIView):
         return Response(serializer.errors, status=400)
 
 
-class PlaceGalleryAPIView(APIView):
+class PlaceGalleryAPIView(generics.GenericAPIView):
+    serializer_class = PlaceGallerySerializer
 
     def get(self, request, id, format=None):
         try:
@@ -178,7 +185,8 @@ class PlaceGalleryAPIView(APIView):
         return Response(status=204)
 
 
-class PlaceGalleryAPIListView(APIView):
+class PlaceGalleryAPIListView(generics.GenericAPIView):
+    serializer_class = PlaceGallerySerializer
 
     def get(self, request, format=None):
         items = PlaceGallery.objects.order_by('pk')
@@ -195,7 +203,8 @@ class PlaceGalleryAPIListView(APIView):
         return Response(serializer.errors, status=400)
 
 
-class PlaceReviewAPIView(APIView):
+class PlaceReviewAPIView(generics.GenericAPIView):
+    serializer_class = PlaceReviewSerializer
 
     def get(self, request, id, format=None):
         try:
@@ -225,7 +234,8 @@ class PlaceReviewAPIView(APIView):
         return Response(status=204)
 
 
-class PlaceReviewAPIListView(APIView):
+class PlaceReviewAPIListView(generics.GenericAPIView):
+    serializer_class = PlaceReviewSerializer
 
     def get(self, request, format=None):
         items = PlaceReview.objects.order_by('pk')
