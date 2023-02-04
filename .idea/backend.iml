@@ -12,7 +12,7 @@
   <component name="TemplatesService">
     <option name="TEMPLATE_FOLDERS">
       <list>
-        <option value="$MODULE_DIR$/kemet/templates" />
+        <option value="$MODULE_DIR$/kemet/kemet/templates" />
       </list>
     </option>
   </component>

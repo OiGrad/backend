@@ -1,0 +1,14 @@
+{
+  "count": 1,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": 1,
+      "title": "New post",
+      "body": "Hello world",
+      "created_at": "2023-02-02T19:52:45.432259Z",
+      "updated_at": "2023-02-02T19:52:45.432317Z"
+    }
+  ]
+}
