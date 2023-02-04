@@ -27,3 +27,4 @@ jobs:
       - name: "Deploy project"
         run: |
           source ./.venv/bin/activate
+          fab update
