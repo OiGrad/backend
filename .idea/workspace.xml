@@ -5,13 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8cbc8183-f9b6-4526-8a31-787881ce5196" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/fk_me.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/backend.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kemet/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/kemet/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/places/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/places/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/posts/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/posts/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,6 +98,7 @@
       <workItem from="1675543468297" duration="3129000" />
       <workItem from="1675553794239" duration="116000" />
       <workItem from="1675553923590" duration="710000" />
+      <workItem from="1675556896908" duration="771000" />
     </task>
     <servers />
   </component>
