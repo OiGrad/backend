@@ -1,11 +1,7 @@
 from rest_framework import serializers
-from posts.models import Post, Love, Comment, Attachment
+from posts.models import Post, Love, Comment, Attachment,CommentReplay
 
 
-class PostSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Post
-        fields = ('id', 'title', 'body', 'created_at', 'updated_at')
 
 
 class LoveSerializer(serializers.ModelSerializer):
@@ -13,10 +9,21 @@ class LoveSerializer(serializers.ModelSerializer):
         model = Love
         fields = '__all__'
 
+class CommentReplaySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CommentReplay
+        fields = '__all__'
 
 class CommentSerializer(serializers.ModelSerializer):
+    commentreplay_set = CommentReplaySerializer(many=True)
     class Meta:
         model = Comment
+        fields = '__all__'
+
+class PostSerializer(serializers.ModelSerializer):
+    comment_set = CommentSerializer(many=True)
+    class Meta:
+        model = Post
         fields = '__all__'
 
 

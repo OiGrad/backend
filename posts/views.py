@@ -52,12 +52,13 @@ class PostAPIListView(ListCreateAPIView):
 
 
     def get(self, request, format=None):
-        items = Post.objects.order_by('pk')
+        posts = Post.objects.prefetch_related( 'comment_set__commentreplay_set',).all().order_by('-updated_at')
         paginator = PageNumberPagination()
-        result_page = paginator.paginate_queryset(items, request)
+        result_page = paginator.paginate_queryset(posts, request)
         serializer = PostSerializer(result_page, many=True)
         return paginator.get_paginated_response(serializer.data)
 
+    #the meaning of life ?
     def post(self, request, format=None):
         serializer = PostSerializer(data=request.data)
         if serializer.is_valid():
