@@ -20,4 +20,5 @@ urlpatterns = [
     path('placereview/<int:id>/', views.PlaceReviewAPIView.as_view()),
     path('^placereview/', views.PlaceReviewAPIListView.as_view()),
 
+    path('user/favorite', views.UserActionsAPI.as_view()),
 ]

@@ -5,6 +5,7 @@ from places.serializers import CitySerializer, PlaceCategorySerializer, PlaceSer
     PlaceReviewSerializer
 from places.models import City, PlaceCategory, Place, PlaceGallery, PlaceReview
 from rest_framework import generics
+from rest_framework import permissions
 
 
 class CityAPIView(generics.GenericAPIView):
@@ -250,3 +251,16 @@ class PlaceReviewAPIListView(generics.GenericAPIView):
             serializer.save()
             return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)
+class UserActionsAPI(APIView):
+    permission_classes = [permissions.IsAuthenticated]        
+    
+    # 1. List all
+    def get(self, request):
+       
+       
+        return Response({"data":12})
+
+    # 2. Create
+    def post(self, request):
+       
+        return Response({"data":12})
