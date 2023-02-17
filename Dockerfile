@@ -1,34 +1,30 @@
-# base image
-FROM python:3.9.6-alpine
+FROM python:3
+MAINTAINER YourName <you@example.com>
 
-# setup environment variable
-ENV DockerHOME=/home/app/webapp
-
-# set work directory
-RUN mkdir -p $DockerHOME
-
-
-# where your code lives
-WORKDIR $DockerHOME
-
-
-# set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
+# Installing packages
+RUN apt-get update && apt-get install -y \
+    libpq-dev \
+    postgresql-client
 
-# install dependencies
-RUN pip install --upgrade pip
+RUN mkdir /code
+WORKDIR /code
 
+# create venv
+RUN python3 -m venv code/venv
 
-# copy whole project to your docker home directory.
-COPY . $DockerHOME
+# activate venv
+RUN . code/venv/bin/activate
 
-
-# run this command to install all dependencies
+# Copying dependencies
+COPY requirements.txt /code/
 RUN pip install -r requirements.txt
 
+# Copying project files
+COPY . /code/
 
+EXPOSE 8000
+EXPOSE 5000
 
-# start server
-CMD python manage.py runserver 0.0.0.0:8000
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
