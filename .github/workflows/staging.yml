@@ -40,8 +40,7 @@ jobs:
         run: |
           echo "BUILDING IMAGE"
           docker build -t kemet-img .
-          docker tag kemet-img:latest
-            echo "IMAGE BUILT"
+          echo "IMAGE BUILT"
       - name: push image
         run: |
             echo "PUSHING IMAGE"
