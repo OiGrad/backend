@@ -38,12 +38,15 @@ INSTALLED_APPS = [
     'drf_yasg',
     'rest_framework',
     'rest_framework.authtoken',
+    'aws_xray_sdk.ext.django',
     'users',
     'places',
     'posts',
 ]
 
 MIDDLEWARE = [
+    'aws_xray_sdk.ext.django.middleware.XRayMiddleware',
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -52,6 +55,22 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+
+
+XRAY_RECORDER = {
+    "AWS_XRAY_DAEMON_ADDRESS": "127.0.0.1:2000",
+    "AUTO_INSTRUMENT": True,
+    "AWS_XRAY_CONTEXT_MISSING": "LOG_ERROR",
+    "AWS_XRAY_TRACING_NAME": "APPLICATION_NAME",
+    "PATCH_MODULES": ["requests"],
+    "PLUGINS": ("ElasticBeanstalkPlugin",),
+    "SAMPLING": True,
+    "SAMPLING_RULES": None,
+    "DYNAMIC_NAMING": None,
+    "STREAMING_THRESHOLD": None,
+}
+
 
 ROOT_URLCONF = 'kemet.urls'
 
