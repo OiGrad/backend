@@ -1,5 +1,5 @@
 from django.conf.urls import include
-from django.urls import path
+from django.urls import path, re_path
 
 from places import views
 
@@ -18,7 +18,6 @@ urlpatterns = [
     path('placegallery/', views.PlaceGalleryAPIListView.as_view()),
 
     path('placereview/<int:id>/', views.PlaceReviewAPIView.as_view()),
-    path('^placereview/', views.PlaceReviewAPIListView.as_view()),
+    re_path('^placereview/', views.PlaceReviewAPIListView.as_view()),
 
-    path('user/favorite', views.UserActionsAPI.as_view()),
 ]

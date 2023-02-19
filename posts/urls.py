@@ -1,20 +1,12 @@
 from django.urls import path
-
-from posts import views
-from posts.views import PostAPIView
+from .views import PostAPIView, PostDetail, CommentDetail, CommentList, CommentReplayList, AttachmentList
 
 urlpatterns = [
+    path('', PostAPIView.as_view(), name='post_list'),
+    path('<int:pk>/', PostDetail.as_view(), name='post_detail'),
 
-    path('<int:id>/', PostAPIView.as_view(), name='post'),
-    path('', views.PostAPIListView.as_view(), name='post_list_create'),
+    path('<int:post_id>/comments/', CommentList.as_view(), name='comment_list'),
+    path('comments/<int:comment_id>/replies/', CommentReplayList.as_view(), name='comment_replies'),
 
-    path('love/<int:id>/', views.LoveAPIView.as_view()),
-    path('love/', views.LoveAPIListView.as_view()),
-
-    path('comment/<int:id>/', views.CommentAPIView.as_view()),
-    path('comment/', views.CommentAPIListView.as_view()),
-
-    path('attachment/<int:id>/', views.AttachmentAPIView.as_view()),
-    path('attachment/', views.AttachmentAPIListView.as_view()),
-
+    path('post/<int:post_id>/attachments/', AttachmentList.as_view(), name='attachment_list'),
 ]
