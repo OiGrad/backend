@@ -20,6 +20,7 @@ class SignupView(CreateAPIView):
         user = User.objects.filter(username__iexact=request.data.get('username', ''))
         return self.create(request, *args, **kwargs)
 
+
 class LoginView(TokenObtainPairView):
     serializer_class = LoginSerializer
 
