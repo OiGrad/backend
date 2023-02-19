@@ -1,6 +1,7 @@
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import UserManager, PermissionsMixin
 from django.db import models
+from places.models import Place
 
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -9,6 +10,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     name = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
+    favorite_places = models.ManyToManyField(Place)
 
     EMAIL_FIELD = 'email'
     USERNAME_FIELD = 'email'

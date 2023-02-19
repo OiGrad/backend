@@ -3,6 +3,7 @@ from rest_framework_simplejwt.exceptions import AuthenticationFailed
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 from users.models import User
+from places.models import Place
 
 
 class SignupSerializer(serializers.ModelSerializer):
@@ -30,3 +31,10 @@ class LoginSerializer(TokenObtainPairSerializer):
         except AuthenticationFailed as ex:
             raise serializers.ValidationError("Incorrect email or password")
         return SignupSerializer(instance=self.user, context=self.context).data
+
+class AddFavoritePlaceSerializer(serializers.ModelSerializer):
+ 
+    class Meta:
+        model = Place
+        fields = ['id']
+
