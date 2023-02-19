@@ -1,5 +1,4 @@
-from django.contrib.contenttypes.fields import GenericRelation
-from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.fields import GenericRelation, GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from users.models import User
@@ -30,6 +29,17 @@ class Post(models.Model):
         return str(self.user)
 
 
+class Attachment(models.Model):
+
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    file = models.FileField(upload_to='attachments')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return str(self.post.pk)
+
+
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
 
@@ -56,24 +66,3 @@ class CommentReplay(models.Model):
 
     def __str__(self):
         return str(self.comment.pk)
-
-    replay=models.TextField()
-
-    likes = GenericRelation(Love)
-
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    def __str__(self):
-        return str(self.comment.pk)
-
-
-
-class Attachment(models.Model):
-
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    file = models.FileField(upload_to='attachments')
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return str(self.post.pk)
