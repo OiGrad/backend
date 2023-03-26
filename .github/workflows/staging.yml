@@ -30,20 +30,4 @@ jobs:
           fab update
 
 
- 
 
-  docker_deploy:
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: actions/checkout@v3
-      - name: build image
-        run: |
-          echo "BUILDING IMAGE"
-          docker build -t kemet-img .
-          echo "IMAGE BUILT"
-      - name: push image
-        run: |
-            echo "PUSHING IMAGE"
-            docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-            docker push kemet-img
-            echo "IMAGE PUSHED"
