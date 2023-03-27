@@ -8,16 +8,13 @@ urlpatterns = [
     path('city/<int:id>/', views.CityAPIView.as_view()),
     path('city/', views.CityAPIListView.as_view()),
 
-    path('placecategory<int:id>/', views.PlaceCategoryAPIView.as_view()),
-    path('placecategory/', views.PlaceCategoryAPIListView.as_view()),
+    path('category<int:id>/', views.PlaceCategoryAPIView.as_view()),
+    path('category/', views.PlaceCategoryAPIListView.as_view()),
 
-    path('place/<int:id>/', views.PlaceAPIView.as_view()),
-    path('place/', views.PlaceAPIListView.as_view()),
+    path('<int:id>/', views.PlaceAPIView.as_view()),
+    path('', views.PlaceAPIListView.as_view()),
 
-    path('placegallery/<int:id>/', views.PlaceGalleryAPIView.as_view()),
-    path('placegallery/', views.PlaceGalleryAPIListView.as_view()),
-
-    path('placereview/<int:id>/', views.PlaceReviewAPIView.as_view()),
-    re_path('^placereview/', views.PlaceReviewAPIListView.as_view()),
+    path('gallery/<int:id>/', views.PlaceGalleryAPIView.as_view()),
+    path('gallery/', views.PlaceGalleryAPIListView.as_view()),
 
 ]

@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="57f0907f-8c67-4cc5-a576-0d426ccd6871" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,7 +25,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="develop" />
+        <entry key="$PROJECT_DIR$/.." value="cloud_practice" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -40,7 +40,7 @@
                 <list>
                   <RecentBranch>
                     <option name="branchName" value="main" />
-                    <option name="lastUsedInstant" value="1675624888" />
+                    <option name="lastUsedInstant" value="1679828291" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="develop" />
@@ -148,6 +148,9 @@
       <workItem from="1675358818715" duration="11690000" />
       <workItem from="1675542602557" duration="863000" />
       <workItem from="1675624844385" duration="103000" />
+      <workItem from="1677286877603" duration="9000" />
+      <workItem from="1679828268432" duration="882000" />
+      <workItem from="1679930996440" duration="74000" />
     </task>
     <servers />
   </component>

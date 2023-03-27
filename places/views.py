@@ -1,10 +1,9 @@
+from rest_framework import generics
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
-from rest_framework.views import APIView
-from places.serializers import CitySerializer, PlaceCategorySerializer, PlaceSerializer, PlaceGallerySerializer, \
-    PlaceReviewSerializer
-from places.models import City, PlaceCategory, Place, PlaceGallery, PlaceReview
-from rest_framework import generics
+
+from places.models import City, PlaceCategory, Place, PlaceGallery
+from places.serializers import CitySerializer, PlaceCategorySerializer, PlaceSerializer, PlaceGallerySerializer
 
 
 class CityAPIView(generics.GenericAPIView):
@@ -18,25 +17,6 @@ class CityAPIView(generics.GenericAPIView):
         except City.DoesNotExist:
             return Response(status=404)
 
-    def put(self, request, id, format=None):
-        try:
-            item = City.objects.get(pk=id)
-        except City.DoesNotExist:
-            return Response(status=404)
-        serializer = CitySerializer(item, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=400)
-
-    def delete(self, request, id, format=None):
-        try:
-            item = City.objects.get(pk=id)
-        except City.DoesNotExist:
-            return Response(status=404)
-        item.delete()
-        return Response(status=204)
-
 
 class CityAPIListView(generics.GenericAPIView):
     serializer_class = CitySerializer
@@ -47,13 +27,6 @@ class CityAPIListView(generics.GenericAPIView):
         result_page = paginator.paginate_queryset(items, request)
         serializer = CitySerializer(result_page, many=True)
         return paginator.get_paginated_response(serializer.data)
-
-    def post(self, request, format=None):
-        serializer = CitySerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=201)
-        return Response(serializer.errors, status=400)
 
 
 class PlaceCategoryAPIView(generics.GenericAPIView):
@@ -67,25 +40,6 @@ class PlaceCategoryAPIView(generics.GenericAPIView):
         except PlaceCategory.DoesNotExist:
             return Response(status=404)
 
-    def put(self, request, id, format=None):
-        try:
-            item = PlaceCategory.objects.get(pk=id)
-        except PlaceCategory.DoesNotExist:
-            return Response(status=404)
-        serializer = PlaceCategorySerializer(item, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=400)
-
-    def delete(self, request, id, format=None):
-        try:
-            item = PlaceCategory.objects.get(pk=id)
-        except PlaceCategory.DoesNotExist:
-            return Response(status=404)
-        item.delete()
-        return Response(status=204)
-
 
 class PlaceCategoryAPIListView(generics.GenericAPIView):
     serializer_class = PlaceCategorySerializer
@@ -96,13 +50,6 @@ class PlaceCategoryAPIListView(generics.GenericAPIView):
         result_page = paginator.paginate_queryset(items, request)
         serializer = PlaceCategorySerializer(result_page, many=True)
         return paginator.get_paginated_response(serializer.data)
-
-    def post(self, request, format=None):
-        serializer = PlaceCategorySerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=201)
-        return Response(serializer.errors, status=400)
 
 
 class PlaceAPIView(generics.GenericAPIView):
@@ -116,25 +63,6 @@ class PlaceAPIView(generics.GenericAPIView):
         except Place.DoesNotExist:
             return Response(status=404)
 
-    def put(self, request, id, format=None):
-        try:
-            item = Place.objects.get(pk=id)
-        except Place.DoesNotExist:
-            return Response(status=404)
-        serializer = PlaceSerializer(item, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=400)
-
-    def delete(self, request, id, format=None):
-        try:
-            item = Place.objects.get(pk=id)
-        except Place.DoesNotExist:
-            return Response(status=404)
-        item.delete()
-        return Response(status=204)
-
 
 class PlaceAPIListView(generics.GenericAPIView):
     serializer_class = PlaceSerializer
@@ -145,13 +73,6 @@ class PlaceAPIListView(generics.GenericAPIView):
         result_page = paginator.paginate_queryset(items, request)
         serializer = PlaceSerializer(result_page, many=True)
         return paginator.get_paginated_response(serializer.data)
-
-    def post(self, request, format=None):
-        serializer = PlaceSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=201)
-        return Response(serializer.errors, status=400)
 
 
 class PlaceGalleryAPIView(generics.GenericAPIView):
@@ -165,25 +86,6 @@ class PlaceGalleryAPIView(generics.GenericAPIView):
         except PlaceGallery.DoesNotExist:
             return Response(status=404)
 
-    def put(self, request, id, format=None):
-        try:
-            item = PlaceGallery.objects.get(pk=id)
-        except PlaceGallery.DoesNotExist:
-            return Response(status=404)
-        serializer = PlaceGallerySerializer(item, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=400)
-
-    def delete(self, request, id, format=None):
-        try:
-            item = PlaceGallery.objects.get(pk=id)
-        except PlaceGallery.DoesNotExist:
-            return Response(status=404)
-        item.delete()
-        return Response(status=204)
-
 
 class PlaceGalleryAPIListView(generics.GenericAPIView):
     serializer_class = PlaceGallerySerializer
@@ -194,59 +96,3 @@ class PlaceGalleryAPIListView(generics.GenericAPIView):
         result_page = paginator.paginate_queryset(items, request)
         serializer = PlaceGallerySerializer(result_page, many=True)
         return paginator.get_paginated_response(serializer.data)
-
-    def post(self, request, format=None):
-        serializer = PlaceGallerySerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=201)
-        return Response(serializer.errors, status=400)
-
-
-class PlaceReviewAPIView(generics.GenericAPIView):
-    serializer_class = PlaceReviewSerializer
-
-    def get(self, request, id, format=None):
-        try:
-            item = PlaceReview.objects.get(pk=id)
-            serializer = PlaceReviewSerializer(item)
-            return Response(serializer.data)
-        except PlaceReview.DoesNotExist:
-            return Response(status=404)
-
-    def put(self, request, id, format=None):
-        try:
-            item = PlaceReview.objects.get(pk=id)
-        except PlaceReview.DoesNotExist:
-            return Response(status=404)
-        serializer = PlaceReviewSerializer(item, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=400)
-
-    def delete(self, request, id, format=None):
-        try:
-            item = PlaceReview.objects.get(pk=id)
-        except PlaceReview.DoesNotExist:
-            return Response(status=404)
-        item.delete()
-        return Response(status=204)
-
-
-class PlaceReviewAPIListView(generics.GenericAPIView):
-    serializer_class = PlaceReviewSerializer
-
-    def get(self, request, format=None):
-        items = PlaceReview.objects.order_by('pk')
-        paginator = PageNumberPagination()
-        result_page = paginator.paginate_queryset(items, request)
-        serializer = PlaceReviewSerializer(result_page, many=True)
-        return paginator.get_paginated_response(serializer.data)
-
-    def post(self, request, format=None):
-        serializer = PlaceReviewSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=201)
-        return Response(serializer.errors, status=400)
