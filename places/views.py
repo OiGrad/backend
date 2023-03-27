@@ -4,11 +4,12 @@ from rest_framework.response import Response
 
 from places.models import City, PlaceCategory, Place, PlaceGallery
 from places.serializers import CitySerializer, PlaceCategorySerializer, PlaceSerializer, PlaceGallerySerializer
+from rest_framework.permissions import IsAuthenticated
 
 
 class CityAPIView(generics.GenericAPIView):
     serializer_class = CitySerializer
-
+    permission_classes=[IsAuthenticated]
     def get(self, request, id, format=None):
         try:
             item = City.objects.get(pk=id)
@@ -20,6 +21,7 @@ class CityAPIView(generics.GenericAPIView):
 
 class CityAPIListView(generics.GenericAPIView):
     serializer_class = CitySerializer
+    permission_classes=[IsAuthenticated]
 
     def get(self, request, format=None):
         items = City.objects.order_by('pk')
@@ -31,6 +33,7 @@ class CityAPIListView(generics.GenericAPIView):
 
 class PlaceCategoryAPIView(generics.GenericAPIView):
     serializer_class = PlaceCategorySerializer
+    permission_classes=[IsAuthenticated]
 
     def get(self, request, id, format=None):
         try:
@@ -43,6 +46,7 @@ class PlaceCategoryAPIView(generics.GenericAPIView):
 
 class PlaceCategoryAPIListView(generics.GenericAPIView):
     serializer_class = PlaceCategorySerializer
+    permission_classes=[IsAuthenticated]
 
     def get(self, request, format=None):
         items = PlaceCategory.objects.order_by('pk')
@@ -54,6 +58,7 @@ class PlaceCategoryAPIListView(generics.GenericAPIView):
 
 class PlaceAPIView(generics.GenericAPIView):
     serializer_class = PlaceSerializer
+    permission_classes=[IsAuthenticated]
 
     def get(self, request, id, format=None):
         try:
@@ -65,6 +70,7 @@ class PlaceAPIView(generics.GenericAPIView):
 
 
 class PlaceAPIListView(generics.GenericAPIView):
+    permission_classes=[IsAuthenticated]
     serializer_class = PlaceSerializer
 
     def get(self, request, format=None):
@@ -77,6 +83,7 @@ class PlaceAPIListView(generics.GenericAPIView):
 
 class PlaceGalleryAPIView(generics.GenericAPIView):
     serializer_class = PlaceGallerySerializer
+    permission_classes=[IsAuthenticated]
 
     def get(self, request, id, format=None):
         try:
@@ -89,6 +96,7 @@ class PlaceGalleryAPIView(generics.GenericAPIView):
 
 class PlaceGalleryAPIListView(generics.GenericAPIView):
     serializer_class = PlaceGallerySerializer
+    permission_classes=[IsAuthenticated]
 
     def get(self, request, format=None):
         items = PlaceGallery.objects.order_by('pk')
