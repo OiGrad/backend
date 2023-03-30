@@ -56,5 +56,5 @@ class PlaceGallery(models.Model):
     image = models.ImageField(upload_to='places')
 
     def __str__(self):
-        return self.place.name
+        return str(self.pk)
 
