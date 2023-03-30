@@ -52,7 +52,7 @@ class Place(models.Model):
 
 
 class PlaceGallery(models.Model):
-    place = models.ForeignKey(Place, on_delete=models.CASCADE)
+    #place = models.ForeignKey(Place, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='places')
 
     def __str__(self):
