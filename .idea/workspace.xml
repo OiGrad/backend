@@ -5,16 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8cbc8183-f9b6-4526-8a31-787881ce5196" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/posts/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/users/migrations/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kemet/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/kemet/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/places/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/places/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/places/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/places/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/places/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/places/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/places/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/places/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/places/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/places/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/migrations/0008_user_favorite_places.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +24,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="play_ground" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -47,12 +38,12 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
-                    <option name="branchName" value="main" />
-                    <option name="lastUsedInstant" value="1676574203" />
+                    <option name="branchName" value="develop" />
+                    <option name="lastUsedInstant" value="1680059795" />
                   </RecentBranch>
                   <RecentBranch>
-                    <option name="branchName" value="develop" />
-                    <option name="lastUsedInstant" value="1675549484" />
+                    <option name="branchName" value="main" />
+                    <option name="lastUsedInstant" value="1676574203" />
                   </RecentBranch>
                 </list>
               </option>
@@ -74,6 +65,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
@@ -113,6 +105,11 @@
       </deployment>
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Docker.Dockerfile" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -132,6 +129,7 @@
       <workItem from="1676486152307" duration="8694000" />
       <workItem from="1676574178277" duration="1108000" />
       <workItem from="1679931072179" duration="1650000" />
+      <workItem from="1681158158825" duration="1251000" />
     </task>
     <servers />
   </component>
