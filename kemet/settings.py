@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'users',
     'places',
     'posts',
+    'roads',
 ]
 
 MIDDLEWARE = [
@@ -169,7 +170,7 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
     'TEST_REQUEST_DEFAULT_FORMAT': 'json',
-    'PAGE_SIZE': 100,
+    'PAGE_SIZE': 10,
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
 }
 

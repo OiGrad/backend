@@ -33,6 +33,7 @@ urlpatterns = [
     path('users/', include('users.urls')),
     path('posts/', include('posts.urls')),
     path('places/', include('places.urls')),
+    path("roads/",include("roads.urls")),
 
     # token auth
     path('token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),

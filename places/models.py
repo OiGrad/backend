@@ -22,7 +22,20 @@ class PlaceCategory(models.Model):
         return self.name
 
 
+class Area(models.Model):
+    """
+    example: Alsalam, Elmarg
+    """
+    name = models.CharField(max_length=255)
+    location = models.JSONField()
+    location_text = models.CharField(max_length=255)
+
+
+
 class Place(models.Model):
+    """
+    represent historical and visits places in the system
+    """
     """
     Place model
     0) city (foreign key)
