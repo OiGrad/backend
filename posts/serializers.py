@@ -1,4 +1,6 @@
 from rest_framework import serializers
+
+from users.serializers import UserSerializer
 from .models import Post, Comment, CommentReplay, Attachment, Love
 
 
@@ -42,6 +44,7 @@ class PostSerializer(serializers.ModelSerializer):
     comments = CommentSerializer(many=True, read_only=True)
     attachments = AttachmentSerializer(many=True, read_only=True)
     likes = serializers.SerializerMethodField()
+    user = UserSerializer(read_only=True)
 
     class Meta:
         model = Post

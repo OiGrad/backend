@@ -24,7 +24,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="develop" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -38,12 +38,12 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
-                    <option name="branchName" value="develop" />
-                    <option name="lastUsedInstant" value="1680059795" />
+                    <option name="branchName" value="main" />
+                    <option name="lastUsedInstant" value="1682702635" />
                   </RecentBranch>
                   <RecentBranch>
-                    <option name="branchName" value="main" />
-                    <option name="lastUsedInstant" value="1676574203" />
+                    <option name="branchName" value="develop" />
+                    <option name="lastUsedInstant" value="1680059795" />
                   </RecentBranch>
                 </list>
               </option>
@@ -63,22 +63,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/mahmoudnasser/Development/graduation_project/backend",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/mahmoudnasser/Development/graduation_project/backend&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Docker.Dockerfile">
     <configuration name="All in APIDOCS" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/APIDOCS.http">
       <method v="2" />
@@ -107,6 +108,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="HTTP Request.All in APIDOCS" />
+        <item itemvalue="Docker.Dockerfile (1)" />
+        <item itemvalue="Docker.Dockerfile" />
         <item itemvalue="Docker.Dockerfile" />
       </list>
     </recent_temporary>
@@ -130,6 +134,12 @@
       <workItem from="1676574178277" duration="1108000" />
       <workItem from="1679931072179" duration="1650000" />
       <workItem from="1681158158825" duration="1251000" />
+      <workItem from="1682701385281" duration="1495000" />
+      <workItem from="1683052142905" duration="1376000" />
+      <workItem from="1683053788244" duration="1502000" />
+      <workItem from="1683111544958" duration="599000" />
+      <workItem from="1683133099274" duration="7866000" />
+      <workItem from="1683199326330" duration="30000" />
     </task>
     <servers />
   </component>

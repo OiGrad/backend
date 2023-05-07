@@ -9,7 +9,7 @@ from places.models import Place
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = "__all__"
+        exclude = ("password","user_permissions", "groups","last_login")
 
 
 class SignupSerializer(serializers.ModelSerializer):

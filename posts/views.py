@@ -17,11 +17,23 @@ class PostAPIView(generics.ListCreateAPIView):
     pagination_class = PageNumberPagination
 
     def post(self, request, *args, **kwargs):
-        serializer = PostSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save(user=self.request.user)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        post_type = request.data.get('type')
+        content = request.data.get('content')
+        index = request.data.get('index')
+
+        # create post
+        if post_type == 'image':
+            img = request.data.get('img', None)
+            post = Post.objects.create(user=request.user, img=img, body=content, index=index)
+
+        elif post_type == 'place':
+            place = request.data.get('place', None)
+            post = Post.objects.create(user=request.user, place_id=place, body=content, index=index)
+
+        else:
+            post = Post.objects.create(user=request.user, body=content, index=index)
+
+        return Response(PostSerializer(post).data, status=status.HTTP_201_CREATED)
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)

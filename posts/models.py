@@ -1,6 +1,8 @@
 from django.contrib.contenttypes.fields import GenericRelation, GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
+
+from places.models import Place
 from users.models import User
 
 
@@ -24,7 +26,10 @@ class Post(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
+    type = models.CharField(max_length=255, default='post')
+    index = models.IntegerField(default=0)
+    img = models.ImageField(upload_to='posts', blank=True, null=True)
+    place = models.ForeignKey(Place, on_delete=models.CASCADE, blank=True, null=True)
     def __str__(self):
         return str(self.user)
 
