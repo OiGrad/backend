@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8cbc8183-f9b6-4526-8a31-787881ce5196" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabfile.py" beforeDir="false" afterPath="$PROJECT_DIR$/fabfile.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,6 +81,11 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
   <component name="RunManager" selected="Docker.Dockerfile">
     <configuration name="All in APIDOCS" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/APIDOCS.http">
       <method v="2" />
@@ -140,6 +146,8 @@
       <workItem from="1683111544958" duration="599000" />
       <workItem from="1683133099274" duration="7866000" />
       <workItem from="1683199326330" duration="30000" />
+      <workItem from="1683473649419" duration="9614000" />
+      <workItem from="1683484662444" duration="825000" />
     </task>
     <servers />
   </component>

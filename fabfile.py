@@ -53,12 +53,12 @@ def deploy():
     sudo("pip3 install virtualenv")
     sudo("apt-get --assume-yes  install python3-dev libpq-dev postgresql postgresql-contrib")
 
-    sudo(f"psql -c 'create database {PROJECT_NAME};'", user="postgres")
+    # sudo(f"psql -c 'create database {PROJECT_NAME};'", user="postgres")
     rand_pass = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(20))
-    print("Password: " + rand_pass)
-    sudo(f"psql -c \"create role {PROJECT_NAME} with encrypted password '{rand_pass}';\"", user="postgres")
-    sudo(f"psql -c \"grant all on database {PROJECT_NAME} to {PROJECT_NAME};\"", user="postgres")
-    sudo(f"psql -c \"alter role {PROJECT_NAME} with login;\"", user="postgres")
+    # print("Password: " + rand_pass)
+    # sudo(f"psql -c \"create role {PROJECT_NAME} with encrypted password '{rand_pass}';\"", user="postgres")
+    # sudo(f"psql -c \"grant all on database {PROJECT_NAME} to {PROJECT_NAME};\"", user="postgres")
+    # sudo(f"psql -c \"alter role {PROJECT_NAME} with login;\"", user="postgres")
 
     sudo("apt --assume-yes  install nginx")
     sudo("apt-get --assume-yes  install supervisor")
