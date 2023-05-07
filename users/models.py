@@ -1,7 +1,6 @@
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import UserManager, PermissionsMixin
 from django.db import models
-from places.models import Place
 
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -10,8 +9,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     name = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
-    favorite_places = models.ManyToManyField(Place)
-
+   
     EMAIL_FIELD = 'email'
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
@@ -31,11 +29,3 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name_plural = 'users'
 
 
-class LovedPlace(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    place = models.ForeignKey('places.Place', on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return self.place.name

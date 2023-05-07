@@ -6,17 +6,21 @@ from users.models import User
 from places.models import Place
 
 
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = "__all__"
+
+
 class SignupSerializer(serializers.ModelSerializer):
-    refresh = serializers.CharField(read_only=True, source='token')
-    access = serializers.CharField(read_only=True, source='token.access_token')
+    refresh = serializers.CharField(read_only=True, source="token")
+    access = serializers.CharField(read_only=True, source="token.access_token")
 
     class Meta:
         model = User
-        fields = ('email', 'password', 'refresh', 'access', 'name', 'username')
+        fields = ("email", "password", "refresh", "access", "name", "username")
 
-        extra_kwargs = {
-            'password': {'write_only': True}
-        }
+        extra_kwargs = {"password": {"write_only": True}}
 
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data)
@@ -24,7 +28,6 @@ class SignupSerializer(serializers.ModelSerializer):
 
 
 class LoginSerializer(TokenObtainPairSerializer):
-
     def validate(self, attrs):
         try:
             super().validate(attrs)
@@ -32,9 +35,8 @@ class LoginSerializer(TokenObtainPairSerializer):
             raise serializers.ValidationError("Incorrect email or password")
         return SignupSerializer(instance=self.user, context=self.context).data
 
+
 class AddFavoritePlaceSerializer(serializers.ModelSerializer):
- 
     class Meta:
         model = Place
-        fields = ['id']
-
+        fields = ["id"]
