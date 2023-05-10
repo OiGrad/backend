@@ -13,13 +13,14 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework_simplejwt import views as jwt_views
-from django.conf.urls.static import static
-from django.conf import settings
+
 schema_view = get_schema_view(
     openapi.Info(
         title="KEMET API",
@@ -33,7 +34,8 @@ urlpatterns = [
     path('users/', include('users.urls')),
     path('posts/', include('posts.urls')),
     path('places/', include('places.urls')),
-    path("roads/",include("roads.urls")),
+    path("roads/", include("roads.urls")),
+    path('comments/', include('comments.urls')),
 
     # token auth
     path('token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),

@@ -1,14 +1,12 @@
-from rest_framework import generics, status, mixins
+from rest_framework import generics, status
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
+
+from .models import Post, Attachment
 from .serializers import (
     PostSerializer,
-    CommentSerializer,
-    CommentReplaySerializer,
     AttachmentSerializer,
-    LoveSerializer,
 )
-from .models import Post, Comment, CommentReplay, Attachment
 
 
 class PostAPIView(generics.ListCreateAPIView):
@@ -42,54 +40,6 @@ class PostAPIView(generics.ListCreateAPIView):
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-
-    def put(self, request, *args, **kwargs):
-        return self.update(request, *args, **kwargs)
-
-    def delete(self, request, *args, **kwargs):
-        return self.destroy(request, *args, **kwargs)
-
-
-class CommentList(generics.ListCreateAPIView):
-    serializer_class = CommentSerializer
-
-    def get_queryset(self):
-        post_id = self.kwargs.get('post_id')
-        return Comment.objects.filter(post=post_id)
-
-    def post(self, request, post_id, *args, **kwargs):
-        serializer = CommentSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save(user=self.request.user, post_id=post_id)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def get(self, request, post_id, *args, **kwargs):
-        return self.list(request, *args, **kwargs)
-
-
-class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Comment.objects.all()
-    serializer_class = CommentSerializer
-
-    def put(self, request, *args, **kwargs):
-        return self.update(request, *args, **kwargs)
-
-    def delete(self, request, *args, **kwargs):
-        return self.destroy(request, *args, **kwargs)
-
-
-class CommentReplayList(generics.CreateAPIView):
-    queryset = CommentReplay.objects.all()
-    serializer_class = CommentReplaySerializer
-
-    def post(self, request, *args, **kwargs):
-        return super().post(request, *args, **kwargs)
-
-
-class CommentReplayDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = CommentReplay.objects.all()
-    serializer_class = CommentReplaySerializer
 
     def put(self, request, *args, **kwargs):
         return self.update(request, *args, **kwargs)

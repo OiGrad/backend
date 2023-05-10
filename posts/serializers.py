@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from users.serializers import UserSerializer
-from .models import Post, Comment, CommentReplay, Attachment, Love
+from .models import Post, Attachment, Love
 
 
 class LoveSerializer(serializers.ModelSerializer):
@@ -16,32 +16,7 @@ class AttachmentSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class CommentReplaySerializer(serializers.ModelSerializer):
-    likes = serializers.SerializerMethodField()
-
-    class Meta:
-        model = CommentReplay
-        fields = '__all__'
-
-    def get_likes(self, obj):
-        return obj.likes.count()
-
-
-class CommentSerializer(serializers.ModelSerializer):
-    commentreplay_set = CommentReplaySerializer(many=True)
-    replies = CommentReplaySerializer(many=True, read_only=True)
-    likes = serializers.SerializerMethodField()
-
-    class Meta:
-        model = Comment
-        fields = '__all__'
-
-    def get_likes(self, obj):
-        return obj.likes.count()
-
-
 class PostSerializer(serializers.ModelSerializer):
-    comments = CommentSerializer(many=True, read_only=True)
     attachments = AttachmentSerializer(many=True, read_only=True)
     likes = serializers.SerializerMethodField()
     user = UserSerializer(read_only=True)
