@@ -1,5 +1,6 @@
 import os, string, random
 from fabric.api import *
+import subprocess
 
 PROJECT_NAME = os.path.dirname(os.path.abspath(__file__)).split('/')[-1]
 PROJECT_DIR = '/home/ubuntu/' + PROJECT_NAME
@@ -45,7 +46,7 @@ def keygen():
 
 
 def deploy():
-    run("ssh-keyscan github.com >> ~/.ssh/known_hosts")
+    run("ssh-keyscan -f github.com >> ~/.ssh/known_hosts")
     run(f"git clone git@github.com:OiGrad/{PROJECT_NAME}.git")
 
     sudo("apt-get update")
@@ -96,4 +97,4 @@ def createdefaultsuperuser():
             run('python3 manage.py createdefaultadmin')
 
 
-env.hosts = ['ubuntu@ec2-44-201-134-136.compute-1.amazonaws.com']
+env.hosts = ['ubuntu@ec2-54-234-21-161.compute-1.amazonaws.com']

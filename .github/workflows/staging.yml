@@ -22,7 +22,7 @@ jobs:
         uses: shimataro/ssh-key-action@v2
         with:
           key: ${{ secrets.SSH_KEY }}
-          known_hosts: ec2-44-214-216-99.compute-1.amazonaws.com
+          known_hosts: ec2-54-234-21-161.compute-1.amazonaws.com
 
       - name: "Deploy project"
         run: |

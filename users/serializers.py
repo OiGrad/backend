@@ -29,6 +29,7 @@ class SignupSerializer(serializers.ModelSerializer):
 
 class LoginSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
+        print('validate')
         try:
             super().validate(attrs)
         except AuthenticationFailed as ex:

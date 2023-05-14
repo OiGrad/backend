@@ -12,7 +12,7 @@ app_name = "users"
 
 urlpatterns = [
     path("signup/", SignupView.as_view(), name="signup"),
-    path("singin", LoginView.as_view(), name="login"),
+    path("singin/", LoginView.as_view(), name="login"),
     path("favorite-places/", FavoritePlaceView.as_view(), name="favorite-places"),
     path(
         "add-favorite-places/", AddFavoritePlaceView.as_view(), name="favorite-places"
