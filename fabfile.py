@@ -39,6 +39,7 @@ def update():
         sudo('supervisorctl reread')
         sudo('supervisorctl update')
         sudo('supervisorctl restart gunicorn')
+        run('python3 manage.py backup')
 
 
 def keygen():
