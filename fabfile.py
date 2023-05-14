@@ -97,4 +97,4 @@ def createdefaultsuperuser():
             run('python3 manage.py createdefaultadmin')
 
 
-env.hosts = ['ubuntu@ec2-54-234-21-161.compute-1.amazonaws.com']
+env.hosts = ['ubuntu@34.232.188.142']
