@@ -23,7 +23,7 @@ from rest_framework_simplejwt import views as jwt_views
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="KEMET API",
+        title="KEMET API Documentation",
         default_version='v1'
     ),
     public=True,
