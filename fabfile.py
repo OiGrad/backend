@@ -31,6 +31,7 @@ def update():
             run('pip3 install -r requirements.txt')
             run('python3 manage.py migrate --noinput')
             run('python3 manage.py collectstatic --noinput')
+            run('python3 manage.py backup')
         sudo('cp infrastructure/nginx.conf /etc/nginx/sites-available/')
         sudo('cp infrastructure/common.conf /etc/nginx/sites-available/')
         sudo('service nginx restart')
@@ -39,7 +40,7 @@ def update():
         sudo('supervisorctl reread')
         sudo('supervisorctl update')
         sudo('supervisorctl restart gunicorn')
-        run('python3 manage.py backup')
+
 
 
 def keygen():
