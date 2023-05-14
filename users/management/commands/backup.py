@@ -17,6 +17,9 @@ class Command(BaseCommand):
             shutil.rmtree(backup_dir)
             os.makedirs(backup_dir)
         db_path = os.path.join(settings.BASE_DIR, 'db.sqlite3')
+        # if media dir not exist, create it
+        if not os.path.exists(os.path.join(settings.BASE_DIR, 'media')):
+            os.makedirs(os.path.join(settings.BASE_DIR, 'media'))
         media_path = os.path.join(settings.BASE_DIR, 'media')
         backup_db_path = os.path.join(backup_dir, 'db.sqlite3')
         backup_media_path = os.path.join(backup_dir, 'media')
