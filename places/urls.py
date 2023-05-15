@@ -16,5 +16,6 @@ urlpatterns = [
 
     path('gallery/<int:id>/', views.PlaceGalleryAPIView.as_view()),
     path('gallery/', views.PlaceGalleryAPIListView.as_view()),
+    path("search/",views.place_search),
 
 ]

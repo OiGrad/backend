@@ -1,4 +1,5 @@
 from rest_framework import generics
+from rest_framework.decorators import api_view
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
@@ -113,3 +114,13 @@ class PlaceGalleryAPIListView(generics.GenericAPIView):
         result_page = paginator.paginate_queryset(items, request)
         serializer = PlaceGallerySerializer(result_page, many=True)
         return paginator.get_paginated_response(serializer.data)
+@api_view(['GET'])
+def place_search(request):
+    name=request.GET.get('name') 
+    if name :
+        query=Place.objects.filter(name=name)
+        print(query)
+        
+        serializer=PlaceSerializer(instance=query,many=True)
+        return Response(serializer.data,status=200)
+    return Response({"data":"not found"},status=404)
