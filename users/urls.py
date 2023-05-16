@@ -6,7 +6,6 @@ from users.views import (
     FavoritePlaceView,
     AddFavoritePlaceView,
     GetUserInfo,
-    make_it_super_user,
 )
 
 app_name = "users"
@@ -19,5 +18,4 @@ urlpatterns = [
         "add-favorite-places/", AddFavoritePlaceView.as_view(), name="favorite-places"
     ),
     path("get-user-date", GetUserInfo, name="get-user"),
-    path("make-it_superuser", make_it_super_user),
 ]
