@@ -5,14 +5,21 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 
 from places.models import City, PlaceCategory, Place, PlaceGallery
-from places.serializers import CitySerializer, PlaceCategorySerializer, PlaceSerializer, PlaceGallerySerializer
+from places.serializers import (
+    CitySerializer,
+    PlaceCategorySerializer,
+    PlaceSerializer,
+    PlaceGallerySerializer,
+)
 from rest_framework_simplejwt.authentication import JWTAuthentication
+
 
 class CityAPIView(generics.GenericAPIView):
     serializer_class = CitySerializer
     authentication_classes = [JWTAuthentication]
 
     permission_classes = [IsAuthenticated]
+
     def get(self, request, id, format=None):
         try:
             item = City.objects.get(pk=id)
@@ -28,7 +35,7 @@ class CityAPIListView(generics.GenericAPIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, format=None):
-        items = City.objects.order_by('pk')
+        items = City.objects.order_by("pk")
         paginator = PageNumberPagination()
         result_page = paginator.paginate_queryset(items, request)
         serializer = CitySerializer(result_page, many=True)
@@ -55,7 +62,7 @@ class PlaceCategoryAPIListView(generics.GenericAPIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, format=None):
-        items = PlaceCategory.objects.order_by('pk')
+        items = PlaceCategory.objects.order_by("pk")
         paginator = PageNumberPagination()
         result_page = paginator.paginate_queryset(items, request)
         serializer = PlaceCategorySerializer(result_page, many=True)
@@ -82,7 +89,7 @@ class PlaceAPIListView(generics.GenericAPIView):
     serializer_class = PlaceSerializer
 
     def get(self, request, format=None):
-        items = Place.objects.order_by('pk')
+        items = Place.objects.order_by("pk")
         paginator = PageNumberPagination()
         result_page = paginator.paginate_queryset(items, request)
         serializer = PlaceSerializer(result_page, many=True)
@@ -109,18 +116,20 @@ class PlaceGalleryAPIListView(generics.GenericAPIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, format=None):
-        items = PlaceGallery.objects.order_by('pk')
+        items = PlaceGallery.objects.order_by("pk")
         paginator = PageNumberPagination()
         result_page = paginator.paginate_queryset(items, request)
         serializer = PlaceGallerySerializer(result_page, many=True)
         return paginator.get_paginated_response(serializer.data)
-@api_view(['GET'])
+
+
+@api_view(["GET"])
 def place_search(request):
-    name=request.GET.get('name') 
-    if name :
-        query=Place.objects.filter(name=name)
+    name = request.GET.get("name")
+    if name:
+        query = Place.objects.filter(name__icontains=name)
         print(query)
-        
-        serializer=PlaceSerializer(instance=query,many=True)
-        return Response(serializer.data,status=200)
-    return Response({"data":"not found"},status=404)
+
+        serializer = PlaceSerializer(instance=query, many=True)
+        return Response(serializer.data, status=200)
+    return Response({"data": "not found"}, status=404)
