@@ -60,7 +60,6 @@ coverage.xml
 *.log
 local_settings.py
 db.sqlite3-journal
-db.sqlite3
 
 # Flask stuff:
 instance/
@@ -94,7 +93,6 @@ ipython_config.py
 
 # PEP 582; used by e.g. github.com/David-OConnor/pyflow
 __pypackages__/
-media/
 # Celery stuff
 celerybeat-schedule
 celerybeat.pid
