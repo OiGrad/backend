@@ -5,8 +5,7 @@ from users.serializers import UserSerializer
 
 
 class FavPlaceSerializers(ModelSerializer):
-    user = UserSerializer(read_only=True)
-
     class Meta:
         model = FavPlaces
         fields = ("id", "user", "place")
+        depth = 1
