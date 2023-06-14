@@ -133,3 +133,17 @@ def place_search(request):
         serializer = PlaceSerializer(instance=query, many=True)
         return Response(serializer.data, status=200)
     return Response({"data": "not found"}, status=404)
+
+
+@api_view(["GET"])
+def Get_Plcaes_By_City_Id(request, City_id):
+    query = Place.objects.filter(city=City_id)
+    serializer = PlaceSerializer(query, many=True)
+    return Response(serializer.data, status=200)
+
+
+@api_view(["GET"])
+def Get_Plcaes_By_Category_Id(request, category_id):
+    query = Place.objects.filter(category=category_id)
+    serializer = PlaceSerializer(query, many=True)
+    return Response(serializer.data, status=200)
