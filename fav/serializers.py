@@ -5,6 +5,8 @@ from users.serializers import UserSerializer
 
 
 class FavPlaceSerializers(ModelSerializer):
+    place = PlaceSerializer(many=True)
+
     class Meta:
         model = FavPlaces
         fields = ("id", "user", "place")
