@@ -34,6 +34,7 @@ urlpatterns = [
     path("roads/", include("roads.urls")),
     path("comments/", include("comments.urls")),
     path("fav/", include("fav.urls")),
+    path("rate/", include("rate.urls")),
     # token auth
     path("token/", jwt_views.TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("token/refresh/", jwt_views.TokenRefreshView.as_view(), name="token_refresh"),

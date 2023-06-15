@@ -58,7 +58,7 @@ class Place(models.Model):
     category = models.ForeignKey(PlaceCategory, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     price = models.IntegerField(default=0)
-    rate = models.FloatField(default=0)
+    rate = models.DecimalField(max_digits=4, decimal_places=2)
     location = models.JSONField()
     info = models.TextField()
     location_text = models.CharField(max_length=255)

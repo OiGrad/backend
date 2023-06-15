@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "roads",
     "comments",
     "fav",
+    "rate",
 ]
 
 MIDDLEWARE = [
