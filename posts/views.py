@@ -2,6 +2,8 @@ from rest_framework import generics, status
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+from rest_framework import filters
+from django_filters.rest_framework import DjangoFilterBackend
 
 from places.models import Place
 from .models import Post, Attachment, PostContent
@@ -16,7 +18,8 @@ class PostAPIView(generics.ListCreateAPIView):
     serializer_class = PostSerializer
     pagination_class = PageNumberPagination
     permission_classes = [IsAuthenticated]
-
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
+    filterset_fields = ['user']
     def post(self, request, *args, **kwargs):
         contents = request.data.get('contents')
         post = Post.objects.create(user=request.user)
