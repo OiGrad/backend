@@ -5,9 +5,9 @@ from users.models import User
 
 class Comment(models.Model):
     text = models.TextField()
-    parent_type = models.CharField(max_length=10,
-                                   choices=[('post', 'Post'), ('place', 'Place'), ('comment', 'Comment')])
-    parent_id = models.PositiveIntegerField()
+    place = models.ForeignKey('places.Place', on_delete=models.CASCADE, blank=True, null=True)
+    post = models.ForeignKey('posts.Post', on_delete=models.CASCADE, blank=True, null=True)
+    comment = models.ForeignKey('self',on_delete=models.SET_NULL, blank=True, null=True, related_name='replies')
     created_at = models.DateTimeField(auto_now_add=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
 

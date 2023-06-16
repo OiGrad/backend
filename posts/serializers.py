@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from users.serializers import UserSerializer
-from .models import Post, Attachment, Love
+from .models import Post, Attachment, Love, PostContent
 
 
 class LoveSerializer(serializers.ModelSerializer):
@@ -16,14 +16,23 @@ class AttachmentSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class ContentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PostContent
+        fields = '__all__'
+
+
 class PostSerializer(serializers.ModelSerializer):
-    attachments = AttachmentSerializer(many=True, read_only=True)
     likes = serializers.SerializerMethodField()
     user = UserSerializer(read_only=True)
+    contents = serializers.SerializerMethodField()
 
     class Meta:
         model = Post
-        fields = '__all__'
+        fields = ['id', 'user', 'contents', 'likes', 'created_at', 'updated_at']
 
     def get_likes(self, obj):
         return obj.likes.count()
+
+    def get_contents(self, obj):
+        return ContentSerializer(PostContent.objects.filter(post=obj), many=True).data

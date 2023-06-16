@@ -1,8 +1,10 @@
 from rest_framework import generics, status
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 
-from .models import Post, Attachment
+from places.models import Place
+from .models import Post, Attachment, PostContent
 from .serializers import (
     PostSerializer,
     AttachmentSerializer,
@@ -13,23 +15,26 @@ class PostAPIView(generics.ListCreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     pagination_class = PageNumberPagination
+    permission_classes = [IsAuthenticated]
 
     def post(self, request, *args, **kwargs):
-        post_type = request.data.get('type')
-        content = request.data.get('content')
-        index = request.data.get('index')
+        contents = request.data.get('contents')
+        post = Post.objects.create(user=request.user)
 
-        # create post
-        if post_type == 'image':
-            img = request.data.get('img', None)
-            post = Post.objects.create(user=request.user, img=img, body=content, index=index)
+        for content in contents:
+            # create post
+            content_type = content.get('type', None)
+            if content_type == 'image':
+                img = content.get('img', None)
+                post_content = PostContent.objects.create(img=img, type=content_type, post=post)
 
-        elif post_type == 'place':
-            place = request.data.get('place', None)
-            post = Post.objects.create(user=request.user, place_id=place, body=content, index=index)
-
-        else:
-            post = Post.objects.create(user=request.user, body=content, index=index)
+            elif content_type == 'place':
+                place_id = content.get('place_id', None)
+                place = Place.objects.get(id=place_id)
+                post_content = PostContent.objects.create(place=place, type=content_type, post=post)
+            else:
+                text = content.get('text', None)
+                post_content = PostContent.objects.create(type=content_type, post=post, text=text)
 
         return Response(PostSerializer(post).data, status=status.HTTP_201_CREATED)
 
