@@ -24,11 +24,11 @@ class CommentsAPIView(APIView):
 
         elif comment_id:
             comment = Comment.objects.get(id=comment_id)
-            Comment.objects.create(comment=comment, text=text, owner=request.user)
+            comment = Comment.objects.create(comment=comment, text=text, owner=request.user)
 
         elif post_id:
             post = Post.objects.get(id=post_id)
-            Comment.objects.create(post=post, text=text, owner=request.user)
+            comment = Comment.objects.create(post=post, text=text, owner=request.user)
 
         return Response(CommentSerializer(comment).data, status=201)
 

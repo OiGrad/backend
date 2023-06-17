@@ -1,9 +1,9 @@
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters
 from rest_framework import generics, status
 from rest_framework.pagination import PageNumberPagination
-from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-from rest_framework import filters
-from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.response import Response
 
 from places.models import Place
 from .models import Post, Attachment, PostContent
@@ -20,6 +20,7 @@ class PostAPIView(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_fields = ['user']
+
     def post(self, request, *args, **kwargs):
         contents = request.data.get('contents')
         post = Post.objects.create(user=request.user)
@@ -33,8 +34,9 @@ class PostAPIView(generics.ListCreateAPIView):
 
             elif content_type == 'place':
                 place_id = content.get('place_id', None)
+                text = content.get('text', None)
                 place = Place.objects.get(id=place_id)
-                post_content = PostContent.objects.create(place=place, type=content_type, post=post)
+                post_content = PostContent.objects.create(place=place, type=content_type, text=text, post=post)
             else:
                 text = content.get('text', None)
                 post_content = PostContent.objects.create(type=content_type, post=post, text=text)
@@ -42,6 +44,17 @@ class PostAPIView(generics.ListCreateAPIView):
         return Response(PostSerializer(post).data, status=status.HTTP_201_CREATED)
 
     def get(self, request, *args, **kwargs):
+        query_param = request.query_params.get('user')
+        if query_param == 'me':
+            user = request.user
+            queryset = self.get_queryset().filter(user=user)
+            page = self.paginate_queryset(queryset)
+            if page is not None:
+                serializer = self.get_serializer(page, many=True)
+                return self.get_paginated_response(serializer.data)
+            serializer = self.get_serializer(queryset, many=True)
+            return Response(serializer.data)
+
         return self.list(request, *args, **kwargs)
 
 
