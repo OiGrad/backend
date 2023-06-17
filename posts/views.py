@@ -25,6 +25,22 @@ class PostAPIView(generics.ListCreateAPIView):
         contents = request.data.get('contents')
         post = Post.objects.create(user=request.user)
 
+        contents = []
+        for key, value in request.data.items():
+            # Extracting the index number from the key
+            index = int(key.split('[')[1].split(']')[0])
+            if index >= len(contents):
+                contents.append({})
+            # Extracting the field name from the key
+            field = key.split('[')[2].split(']')[0]
+            # Adding the field and value to the corresponding index in the contents list
+            if field == 'img':
+                contents[index][field] = value
+            else:
+                contents[index][field] = value
+
+        # Creating the final JSON format
+
         for content in contents:
             # create post
             content_type = content.get('type', None)
