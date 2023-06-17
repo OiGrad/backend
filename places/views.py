@@ -69,33 +69,18 @@ class PlaceCategoryAPIListView(generics.GenericAPIView):
         return paginator.get_paginated_response(serializer.data)
 
 
-from fav.models import FavPlaces
-from django.shortcuts import get_object_or_404
-
-
 class PlaceAPIView(generics.GenericAPIView):
     serializer_class = PlaceSerializer
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
 
     def get(self, request, id, format=None):
-        user_fav_place = None
         try:
             item = Place.objects.get(pk=id)
-            try:
-                user_fav = FavPlaces.objects.get(user=self.request.user, place=item)
-                user_fav_place = True
 
-            except FavPlaces.DoesNotExist:
-                user_fav_place = False
+            serializer = PlaceSerializer(item, context={"request": request})
 
-            print(user_fav_place)
-            serializer = PlaceSerializer(item)
-
-            data = serializer.data
-            data["is_user_fav_place"] = user_fav_place
-
-            return Response(data)
+            return Response(serializer.data)
         except Place.DoesNotExist:
             return Response(status=404)
 
@@ -109,7 +94,9 @@ class PlaceAPIListView(generics.GenericAPIView):
         items = Place.objects.order_by("pk")
         paginator = PageNumberPagination()
         result_page = paginator.paginate_queryset(items, request)
-        serializer = PlaceSerializer(result_page, many=True)
+        serializer = PlaceSerializer(
+            result_page, many=True, context={"request": request}
+        )
         return paginator.get_paginated_response(serializer.data)
 
 
@@ -136,7 +123,9 @@ class PlaceGalleryAPIListView(generics.GenericAPIView):
         items = PlaceGallery.objects.order_by("pk")
         paginator = PageNumberPagination()
         result_page = paginator.paginate_queryset(items, request)
-        serializer = PlaceGallerySerializer(result_page, many=True)
+        serializer = PlaceGallerySerializer(
+            result_page, many=True, context={"request": request}
+        )
         return paginator.get_paginated_response(serializer.data)
 
 
@@ -147,7 +136,9 @@ def place_search(request):
         query = Place.objects.filter(name__icontains=name)
         print(query)
 
-        serializer = PlaceSerializer(instance=query, many=True)
+        serializer = PlaceSerializer(
+            instance=query, many=True, context={"request": request}
+        )
         return Response(serializer.data, status=200)
     return Response({"data": "not found"}, status=404)
 
@@ -155,12 +146,12 @@ def place_search(request):
 @api_view(["GET"])
 def Get_Plcaes_By_City_Id(request, City_id):
     query = Place.objects.filter(city=City_id)
-    serializer = PlaceSerializer(query, many=True)
+    serializer = PlaceSerializer(query, many=True, context={"request": request})
     return Response(serializer.data, status=200)
 
 
 @api_view(["GET"])
 def Get_Plcaes_By_Category_Id(request, category_id):
     query = Place.objects.filter(category=category_id)
-    serializer = PlaceSerializer(query, many=True)
+    serializer = PlaceSerializer(query, many=True, context={"request": request})
     return Response(serializer.data, status=200)
