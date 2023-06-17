@@ -23,11 +23,11 @@ def rate_place(request):
     place = get_object_or_404(Place, pk=place_id)
     if place_id and rate:
         new_rate, crated = RatePlace.objects.get_or_create(
-            place=place, user=request.user
+            place=place, user=request.user, defaults={"rate": rate}
         )
         new_rate.rate = rate
         new_rate.save()
-        serializer = RatePlaceSerializer(rate_place)
+        serializer = RatePlaceSerializer(new_rate)
         return Response(
             {"data": "your data are saved "}, status=status.HTTP_201_CREATED
         )
