@@ -69,16 +69,33 @@ class PlaceCategoryAPIListView(generics.GenericAPIView):
         return paginator.get_paginated_response(serializer.data)
 
 
+from fav.models import FavPlaces
+from django.shortcuts import get_object_or_404
+
+
 class PlaceAPIView(generics.GenericAPIView):
     serializer_class = PlaceSerializer
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
 
     def get(self, request, id, format=None):
+        user_fav_place = None
         try:
             item = Place.objects.get(pk=id)
+            try:
+                user_fav = FavPlaces.objects.get(user=self.request.user, place=item)
+                user_fav_place = True
+
+            except FavPlaces.DoesNotExist:
+                user_fav_place = False
+
+            print(user_fav_place)
             serializer = PlaceSerializer(item)
-            return Response(serializer.data)
+
+            data = serializer.data
+            data["is_user_fav_place"] = user_fav_place
+
+            return Response(data)
         except Place.DoesNotExist:
             return Response(status=404)
 
