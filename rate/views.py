@@ -35,3 +35,6 @@ def rate_place(request):
         {"error": "check if you are send the placeid and the rate "},
         status=status.HTTP_400_BAD_REQUEST,
     )
+
+
+    
